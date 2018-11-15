@@ -9,15 +9,29 @@ GAME RULES:
 
 */
 
-var scores, randScore, activePlayer, dice;
+var scores, randScore, activePlayer;
 
 scores = [0,0];
 randScore = 0;
 activePlayer = 0;
-dice = Math.floor(Math.random() * 6) + 1;
 
-//document.querySelector('#current-'+activePlayer).textContent = dice;
-document.querySelector('#current-'+activePlayer).innerHTML = '<em>' + dice + '</em>'; // we can add html with innerHTML
-
-// creating dom showing the dice none at first look .. in future it can be change .. now it's for practise
 document.querySelector('.dice').style.display = 'none';
+
+document.getElementById('score-0').innerHTML = '<em>' + 0 + '</em>';
+document.getElementById('score-1').innerHTML = '<em>' + 0 + '</em>';
+document.getElementById('current-0').innerHTML = '<em>' + 0 + '</em>';
+document.getElementById('current-1').innerHTML = '<em>' + 0 + '</em>';
+
+document.querySelector('.btn-roll').addEventListener('click', function(){
+	var dice 	= Math.floor(Math.random() * 6) + 1;
+	var diceDom = document.querySelector('.dice');
+	diceDom.style.display = 'block';
+	diceDom.src = "dice-" + dice + ".png";
+})
+
+
+// //document.querySelector('#current-'+activePlayer).textContent = dice;
+// document.querySelector('#current-'+activePlayer).innerHTML = '<em>' + dice + '</em>'; // we can add html with innerHTML
+
+// // creating dom showing the dice none at first look .. in future it can be change .. now it's for practise
+// document.querySelector('.dice').style.display = 'none';
