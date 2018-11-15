@@ -9,10 +9,10 @@ GAME RULES:
 
 */
 
-var scores, randScore, activePlayer;
+var scores, roundScore, activePlayer;
 
 scores = [0,0];
-randScore = 0;
+roundScore = 0;
 activePlayer = 0;
 
 document.querySelector('.dice').style.display = 'none';
@@ -23,11 +23,50 @@ document.getElementById('current-0').innerHTML = '<em>' + 0 + '</em>';
 document.getElementById('current-1').innerHTML = '<em>' + 0 + '</em>';
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
+	// random number 
 	var dice 	= Math.floor(Math.random() * 6) + 1;
+
+
+	// roll the dice
 	var diceDom = document.querySelector('.dice');
 	diceDom.style.display = 'block';
 	diceDom.src = "dice-" + dice + ".png";
+
+	// update the round scor if the number != 1
+	if(dice !== 1){
+		// add the scor
+		roundScore += dice;
+		document.querySelector('#current-'+ activePlayer).innerHTML = '<em>' + roundScore + '</em>';
+	}else{
+		// next player
+		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+		roundScore = 0;
+
+		document.getElementById('current-0').innerHTML = '<em>' + 0 + '</em>';
+		document.getElementById('current-1').innerHTML = '<em>' + 0 + '</em>';
+
+		// change the active player indicator
+		// document.querySelector('.player-0-panel').classList.remove('active');
+		// document.querySelector('.player-1-panel').classList.add('active');
+
+		document.querySelector('.player-0-panel').classList.toggle('active');
+		document.querySelector('.player-1-panel').classList.toggle('active');
+
+		document.querySelector('.dice').style.display = 'none';
+	}
+
 })
+
+
+
+
+
+
+
+
+
+
+
 
 
 // //document.querySelector('#current-'+activePlayer).textContent = dice;
