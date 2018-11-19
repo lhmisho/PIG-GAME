@@ -11,16 +11,8 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
-
-document.querySelector('.dice').style.display = 'none';
-
-document.getElementById('score-0').innerHTML = '<em>' + 0 + '</em>';
-document.getElementById('score-1').innerHTML = '<em>' + 0 + '</em>';
-document.getElementById('current-0').innerHTML = '<em>' + 0 + '</em>';
-document.getElementById('current-1').innerHTML = '<em>' + 0 + '</em>';
+// initializing the game
+init();
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
 	// random number 
@@ -86,8 +78,34 @@ function nextPlayer(){
 }
 
 
+document.querySelector('.btn-new').addEventListener('click', init);
 
+// function for initializing the game
+function init(){
+	scores = [0,0];
+	roundScore = 0;
+	activePlayer = 0;
 
+	document.querySelector('.dice').style.display = 'none';
+
+	document.getElementById('score-0').innerHTML = '<em>' + 0 + '</em>';
+	document.getElementById('score-1').innerHTML = '<em>' + 0 + '</em>';
+	document.getElementById('current-0').innerHTML = '<em>' + 0 + '</em>';
+	document.getElementById('current-1').innerHTML = '<em>' + 0 + '</em>';
+	document.getElementById('name-0').innerHTML = '<em>' + "Player 1" + '</em>';
+	document.getElementById('name-1').innerHTML = '<em>' + "Player 2" + '</em>';
+
+	// remove winner class form both of them bcz we don't know who is actually won
+	document.querySelector('.player-0-panel').classList.remove('winner');
+	document.querySelector('.player-1-panel').classList.remove('winner');
+
+	// now remove active class form also from both of them so that we can active player-1 at start of the game
+	document.querySelector('.player-0-panel').classList.remove('active');
+	document.querySelector('.player-1-panel').classList.remove('active');
+
+	// now active palyer-1 as active classs
+	document.querySelector('.player-0-panel').classList.add('active');
+}
 
 
 
