@@ -39,25 +39,51 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 		document.querySelector('#current-'+ activePlayer).innerHTML = '<em>' + roundScore + '</em>';
 	}else{
 		// next player
-		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-		roundScore = 0;
-
-		document.getElementById('current-0').innerHTML = '<em>' + 0 + '</em>';
-		document.getElementById('current-1').innerHTML = '<em>' + 0 + '</em>';
-
-		// change the active player indicator
-		// document.querySelector('.player-0-panel').classList.remove('active');
-		// document.querySelector('.player-1-panel').classList.add('active');
-
-		document.querySelector('.player-0-panel').classList.toggle('active');
-		document.querySelector('.player-1-panel').classList.toggle('active');
-
-		document.querySelector('.dice').style.display = 'none';
+		nextPlayer();
 	}
 
-})
+});
 
 
+document.querySelector('.btn-hold').addEventListener('click',function(){
+	// add current scor to global scor
+	scores[activePlayer] += roundScore;
+
+	// update UI
+	document.querySelector('#score-'+activePlayer).innerHTML = '<em>' + scores[activePlayer] + '</em>';
+
+
+	// check if the user is win or not
+	if(scores[activePlayer] >= 20){
+		document.querySelector('#name-' + activePlayer).innerHTML = '<em>' + "winner!" + '</em>';
+		//document.querySelector('.dice').style.display = 'none';
+		document.querySelector('.dice').src = 'winner.png';
+		document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
+		document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+	}else{
+		// next player
+		nextPlayer();
+	}
+
+});
+
+
+function nextPlayer(){
+	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+		roundScore = 0;
+
+	document.getElementById('current-0').innerHTML = '<em>' + 0 + '</em>';
+	document.getElementById('current-1').innerHTML = '<em>' + 0 + '</em>';
+
+	// change the active player indicator
+	// document.querySelector('.player-0-panel').classList.remove('active');
+	// document.querySelector('.player-1-panel').classList.add('active');
+
+	document.querySelector('.player-0-panel').classList.toggle('active');
+	document.querySelector('.player-1-panel').classList.toggle('active');
+
+	document.querySelector('.dice').style.display = 'none';
+}
 
 
 
