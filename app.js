@@ -49,6 +49,10 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 	}
 });
 
+// function myFunction() {
+//     var x = document.getElementById("myText").value;
+//     document.getElementById("demo").innerHTML = x;
+// }
 
 // working with hold button
 document.querySelector('.btn-hold').addEventListener('click',function(){
@@ -58,10 +62,15 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 
 		// update UI
 		document.querySelector('#score-'+activePlayer).innerHTML = '<em>' + scores[activePlayer] + '</em>';
-
-
+		var input = document.querySelector('.final-scor').value;
+		var winnigScor;
+		if(input){
+			winnigScor = input;
+		}else{
+			winnigScor = 20;
+		}
 		// check if the user is win or not
-		if(scores[activePlayer] >= 20){
+		if(scores[activePlayer] >= winnigScor){
 			document.querySelector('#name-' + activePlayer).innerHTML = '<em>' + "winner!" + '</em>';
 			//document.querySelector('.dice').style.display = 'none';
 			document.querySelector('.dice').src = 'winner.png';
